@@ -23,7 +23,8 @@ app.get('/:DATESTRING', function(req, res) {
 	var date = new Date(dateString);
 	if(date == 'Invalid Date') {
 		// not a valid date
-		res.send("Not a valid date");
+		obj["unix"] = null;
+		obj["natural"] = null;
 	}
 	else {
 		console.log(date);
@@ -49,9 +50,9 @@ app.get('/:DATESTRING', function(req, res) {
 			];
 		var dateStr = months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
 		obj["natural"] = dateStr;
-		
-		res.send(JSON.stringify(obj));
 	}
+	
+	res.send(JSON.stringify(obj));
 });
 
 var port = process.env.PORT || 8080;
